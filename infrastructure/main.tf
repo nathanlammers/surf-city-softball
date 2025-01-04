@@ -24,8 +24,8 @@ provider "google-beta" {
 resource "google_project" "default" {
   provider   = google-beta.no_user_project_override
 
-  name       = "surf-city-softball"
-  project_id = "surf-city-softball"
+  name       = "surf-city-softball-dev"
+  project_id = "surf-city-softball-dev"
 
   # Required for the project to display in any list of Firebase projects.
   labels = {
@@ -64,7 +64,7 @@ resource "google_firebase_project" "default" {
 # Creates a Firebase Android App in the new project created above.
 resource "google_firebase_apple_app" "default" {
   provider = google-beta
-  bundle_id = "wedge.jetty"
+  bundle_id = "wedge.surf-city-softball"
   project      = google_project.default.project_id
   display_name = "Jetty"
 
@@ -75,8 +75,8 @@ resource "google_firebase_apple_app" "default" {
 }
 
 resource "google_firestore_database" "database" {
-  project     = "surf-city-softball"
-  name        = "surf-city-softball"
+  project     = "surf-city-softball-dev"
+  name        = "surf-city-softball-dev"
   location_id = "us-west2"
   type        = "FIRESTORE_NATIVE"
 }
