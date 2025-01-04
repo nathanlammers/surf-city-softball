@@ -24,8 +24,8 @@ provider "google-beta" {
 resource "google_project" "default" {
   provider   = google-beta.no_user_project_override
 
-  name       = "jetty-softball"
-  project_id = "jetty-softball"
+  name       = "surf-city-softball"
+  project_id = "surf-city-softball"
 
   # Required for the project to display in any list of Firebase projects.
   labels = {
@@ -72,4 +72,11 @@ resource "google_firebase_apple_app" "default" {
   depends_on = [
     google_firebase_project.default,
   ]
+}
+
+resource "google_firestore_database" "database" {
+  project     = "surf-city-softball"
+  name        = "surf-city-softball"
+  location_id = "us-west2"
+  type        = "FIRESTORE_NATIVE"
 }
