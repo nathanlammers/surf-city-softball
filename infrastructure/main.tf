@@ -29,7 +29,7 @@ provider "google-beta" {
 }
 
 # Creates a new Google Cloud project.
-resource "google_project" "surf_city_softball" {
+resource "google_project" "surf_city_softball_project" {
   provider   = google.no_user_project_override
 
   name       = "surf-city-softball-dev"
@@ -49,7 +49,7 @@ resource "google_project_billing_info" "surf_city_softball_billing" {
 }
 
 # Set a budget for the project.
-resource "google_billing_budget" "budget" {
+resource "google_billing_budget" "surf_city_softball_budget" {
   billing_account = data.google_billing_account.account.id
   display_name = "Surf City Softball Budget"
   amount {
@@ -63,7 +63,7 @@ resource "google_billing_budget" "budget" {
 # Enables required APIs.
 resource "google_project_service" "surf_city_softball_apis" {
   provider = google.no_user_project_override
-  project  = google_project.default.project_id
+  project  = google_project.surf_city_softball_project.project_id
   for_each = toset([
     "cloudbilling.googleapis.com",
     "cloudresourcemanager.googleapis.com",
@@ -80,7 +80,7 @@ resource "google_project_service" "surf_city_softball_apis" {
 # Enables Firebase services for the new project created above.
 resource "google_firebase_project" "surf_city_softball_firebase_project" {
   provider = google-beta
-  project  = google_project.default.project_id
+  project  = google_project.surf_city_softball_project.project_id
 
   # Waits for the required APIs to be enabled.
   depends_on = [
@@ -97,7 +97,7 @@ resource "google_firebase_apple_app" "surf_city_softball_firebase_apple_app" {
 
   # Wait for Firebase to be enabled in the Google Cloud project before creating this App.
   depends_on = [
-    google_firebase_project.default,
+    google_firebase_project.surf_city_softball_apis,
   ]
 }
 
