@@ -51,7 +51,7 @@ resource "google_project" "surf_city_softball_project" {
 
 # Set a budget for the project.
 resource "google_billing_budget" "surf_city_softball_budget" {
-  billing_account = data.surf_city_softball_billing.account.id
+  billing_account = data.google_billing_account.surf_city_softball_billing.account.id
   amount {
     specified_amount {
       currency_code = "USD"
