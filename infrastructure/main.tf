@@ -66,7 +66,7 @@ resource "google_firebase_apple_app" "default" {
   provider = google-beta
   bundle_id = "wedge.surf-city-softball"
   project      = google_project.default.project_id
-  display_name = "Jetty"
+  display_name = "Surf City Softball"
 
   # Wait for Firebase to be enabled in the Google Cloud project before creating this App.
   depends_on = [
