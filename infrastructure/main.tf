@@ -43,14 +43,15 @@ resource "google_project" "surf_city_softball_project" {
 }
 
 # Link the project to the root billing account.
-resource "google_project_billing_info" "surf_city_softball_billing" {
-  project        = google_project.my_project.project_id
+data "google_billing_account" "surf_city_softball_billing" {
+  display_name = "Surf City Softball Billing Account"
+  open         = true
   billing_account = "0156BD-FE9F44-8E2226"
 }
 
 # Set a budget for the project.
 resource "google_billing_budget" "surf_city_softball_budget" {
-  billing_account = data.google_billing_account.account.id
+  billing_account = data.surf_city_softball_billing.account.id
   display_name = "Surf City Softball Budget"
   amount {
     specified_amount {
