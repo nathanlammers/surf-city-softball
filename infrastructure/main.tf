@@ -84,7 +84,7 @@ resource "google_firebase_project" "surf_city_softball_firebase_project" {
 
   # Waits for the required APIs to be enabled.
   depends_on = [
-    google_project_service.default
+    google_project_service.surf_city_softball_apis
   ]
 }
 
@@ -92,7 +92,7 @@ resource "google_firebase_project" "surf_city_softball_firebase_project" {
 resource "google_firebase_apple_app" "surf_city_softball_firebase_apple_app" {
   provider = google-beta
   bundle_id = "wedge.surf-city-softball"
-  project      = google_project.default.project_id
+  project      = google_project.surf_city_softball_project.project_id
   display_name = "Surf City Softball"
 
   # Wait for Firebase to be enabled in the Google Cloud project before creating this App.
