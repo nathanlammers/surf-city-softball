@@ -30,8 +30,19 @@ provider "google-beta" {
 
 # Retrieve data from the Google Cloud Billing Account.
 data "google_billing_account" "surf_city_softball_billing" {
-  open         = true
+  open = true
   billing_account = "0156BD-FE9F44-8E2226"
+}
+
+# Set a budget for the project.
+resource "google_billing_budget" "surf_city_softball_budget" {
+  billing_account = data.google_billing_account.surf_city_softball_billing.id
+  amount {
+    specified_amount {
+      currency_code = "USD"
+      units = "5"
+    }
+  }
 }
 
 # Creates a new Google Cloud project.
@@ -46,17 +57,6 @@ resource "google_project" "surf_city_softball_project" {
   labels = {
     "environment" = "dev"
     "firebase" = "enabled"
-  }
-}
-
-# Set a budget for the project.
-resource "google_billing_budget" "surf_city_softball_budget" {
-  billing_account = data.google_billing_account.surf_city_softball_billing.account.id
-  amount {
-    specified_amount {
-      currency_code = "USD"
-      units = "5"
-    }
   }
 }
 
@@ -93,11 +93,11 @@ resource "google_firebase_apple_app" "surf_city_softball_firebase_apple_app" {
   provider = google-beta
   bundle_id = "wedge.surf-city-softball"
   project      = google_project.surf_city_softball_project.project_id
-  display_name = "Surf City Softball"
+  display_name = "Surf City Softball (Dev)"
 
   # Wait for Firebase to be enabled in the Google Cloud project before creating this App.
   depends_on = [
-    google_firebase_project.surf_city_softball_apis,
+    google_firebase_project.surf_city_softball_firebase_project
   ]
 }
 
