@@ -30,7 +30,6 @@ provider "google-beta" {
 
 # Retrieve data from the Google Cloud Billing Account.
 data "google_billing_account" "surf_city_softball_billing" {
-  display_name = "Wedge LLC Billing Account"
   open         = true
   billing_account = "0156BD-FE9F44-8E2226"
 }
