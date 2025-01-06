@@ -43,6 +43,11 @@ resource "google_billing_budget" "surf_city_softball_budget" {
       units = "5"
     }
   }
+  
+  # Waits for the required APIs to be enabled.
+  depends_on = [
+    google_project_service.surf_city_softball_apis
+  ]
 }
 
 # Creates a new Google Cloud project.
@@ -52,6 +57,7 @@ resource "google_project" "surf_city_softball_project" {
   name       = "surf-city-softball-dev"
   project_id = "surf-city-softball-dev"
   billing_account = data.google_billing_account.surf_city_softball_billing.id
+  deletion_policy = "DELETE"
 
   # Required for the project to display in any list of Firebase projects.
   labels = {
@@ -65,6 +71,7 @@ resource "google_project_service" "surf_city_softball_apis" {
   provider = google.no_user_project_override
   project  = google_project.surf_city_softball_project.project_id
   for_each = toset([
+    "billingbudgets.googleapis.com",
     "cloudbilling.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "firebase.googleapis.com",
