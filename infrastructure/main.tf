@@ -113,4 +113,9 @@ resource "google_firestore_database" "surf_city_softball_firestore" {
   name        = "surf-city-softball-dev"
   location_id = "us-west2"
   type        = "FIRESTORE_NATIVE"
+
+  depends_on = [
+    google_project.surf_city_softball_project,
+    google_project_service.surf_city_softball_apis
+  ]
 }
