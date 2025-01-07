@@ -16,6 +16,14 @@ terraform {
   }
 }
 
+terraform {
+  backend "gcs" {
+    bucket = "surf-city-softball-terraform-state-${terraform.workspace}"
+    prefix = "terraform/state"
+    workspace_key_prefix = "env"
+  }
+}
+
 # Configures the providers to not use the resource block's specified project for quota checks.
 # This provider should only be used during project creation and initializing services.
 provider "google" {
@@ -54,15 +62,38 @@ resource "google_billing_budget" "surf_city_softball_budget" {
 resource "google_project" "surf_city_softball_project" {
   provider   = google.no_user_project_override
 
-  name       = "surf-city-softball-dev"
-  project_id = "surf-city-softball-dev"
+  name       = "surf-city-softball-${terraform.workspace}"
+  project_id = "surf-city-softball-${terraform.workspace}"
   billing_account = data.google_billing_account.surf_city_softball_billing.id
   deletion_policy = "DELETE"
 
   # Required for the project to display in any list of Firebase projects.
   labels = {
-    "environment" = "dev"
+    "environment" = "${terraform.workspace}"
     "firebase" = "enabled"
+  }
+}
+
+resource "google_storage_bucket" "surf_city_softball_terraform_state" {
+  name          = "surf-city-softball-terraform-state-${terraform.workspace}"
+  location      = "US"
+  storage_class = "STANDARD"
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age = 365 # Optional: Retain objects for 1 year
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  labels = {
+    environment = terraform.workspace
   }
 }
 
@@ -77,6 +108,7 @@ resource "google_project_service" "surf_city_softball_apis" {
     "firebase.googleapis.com",
     "firestore.googleapis.com",
     "serviceusage.googleapis.com",
+    "storage.googleapis.com"
   ])
   service = each.key
 
@@ -100,7 +132,7 @@ resource "google_firebase_apple_app" "surf_city_softball_firebase_apple_app" {
   provider = google-beta
   bundle_id = "wedge.surf-city-softball"
   project      = google_project.surf_city_softball_project.project_id
-  display_name = "Surf City Softball (Dev)"
+  display_name = "Surf City Softball (${terraform.workspace})"
 
   # Wait for Firebase to be enabled in the Google Cloud project before creating this App.
   depends_on = [
@@ -109,8 +141,8 @@ resource "google_firebase_apple_app" "surf_city_softball_firebase_apple_app" {
 }
 
 resource "google_firestore_database" "surf_city_softball_firestore" {
-  project     = "surf-city-softball-dev"
-  name        = "surf-city-softball-dev"
+  project     = "surf-city-softball-${terraform.workspace}"
+  name        = "surf-city-softball-${terraform.workspace}"
   location_id = "us-west2"
   type        = "FIRESTORE_NATIVE"
 
