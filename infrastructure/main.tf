@@ -18,7 +18,7 @@ terraform {
 
 terraform {
   backend "gcs" {
-    bucket = "surf-city-softball-terraform-state-${terraform.workspace}"
+    bucket = "surf-city-softball-storage-${terraform.workspace}"
     prefix = "terraform/state"
     workspace_key_prefix = "env"
   }
