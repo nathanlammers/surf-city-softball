@@ -1,0 +1,6 @@
+terraform {
+  backend "gcs" {
+    bucket = "surf-city-softball-dev"
+    prefix = terraform/storage"
+  }
+}

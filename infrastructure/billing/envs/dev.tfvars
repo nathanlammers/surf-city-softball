@@ -1,0 +1,6 @@
+google_provider_version      = "6.13.1"
+google_beta_provider_version = "6.13.1"
+environment_name             = "dev"
+project_id                   = "surf-city-softball-dev"
+project_name                 = "surf-city-softball-dev"
+region                       = "us-west2"
