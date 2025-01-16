@@ -1,2 +1,2 @@
 bucket = "surf-city-softball-storage-prod"
-prefix = "terraform/storage"
+prefix = "terraform/application"

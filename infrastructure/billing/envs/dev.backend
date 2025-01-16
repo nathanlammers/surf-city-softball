@@ -1,6 +1,2 @@
-terraform {
-  backend "gcs" {
-    bucket = "surf-city-softball-dev"
-    prefix = terraform/billing"
-  }
-}
+bucket = "surf-city-softball-storage-dev"
+prefix = "terraform/billing"

@@ -1,34 +1,29 @@
-variable "network_name" {
-  description = "The name of the VPC network"
-  type        = string
+variable "auto_create_subnetworks" {
+  description = "Whether to create subnetworks automatically"
+  type        = bool
 }
 
-variable "subnet_name" {
-  description = "The name of the subnet"
+variable "network_name" {
+  description = "The network name"
+  type       = string
+}
+
+variable "project_id" {
+  description = "The project ID"
+  type = string
+}
+
+variable "region" {
+  description = "The region"
   type        = string
 }
 
 variable "subnet_cidr_range" {
-  description = "The CIDR range for the subnet"
+  description = "The subnet CIDR range"
   type        = string
 }
 
-variable "project_id" {
-  description = "The Google Cloud project ID"
-  type        = string
-}
-
-variable "region" {
-  description = "The region for the VPC"
-  type        = string
-}
-
-variable "google_provider_version" {
-  description = "The terraform provider version for Google Cloud"
-  type        = string
-}
-
-variable "google_beta_provider_version" {
-  description = "The terraform provider version for Google Cloud Beta"
+variable "subnet_name" {
+  description = "The subnet name"
   type        = string
 }

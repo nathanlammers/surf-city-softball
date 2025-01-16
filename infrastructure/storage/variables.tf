@@ -1,5 +1,10 @@
-variable "project_name" {
-  description = "The name of the Google Cloud project"
+variable "bucket_name" {
+  description = "The name of the GCS bucket"
+  type        = string
+}
+
+variable "environment_name" {
+  description = "The name of the environment"
   type        = string
 }
 
@@ -8,13 +13,8 @@ variable "project_id" {
   type        = string
 }
 
-variable "google_provider_version" {
-  description = "The terraform provider version for Google Cloud"
-  type        = string
-}
-
-variable "google_beta_provider_version" {
-  description = "The terraform provider version for Google Cloud Beta"
+variable "project_name" {
+  description = "The name of the Google Cloud project"
   type        = string
 }
 
@@ -23,7 +23,12 @@ variable "region" {
   type        = string
 }
 
-variable "environment_name" {
-  description = "The name of the environment"
+variable "storage_class" {
+  description = "The storage class of the bucket"
   type        = string
+}
+
+variable "versioning_enabled" {
+  description = "Enable versioning on the bucket"
+  type        = bool
 }

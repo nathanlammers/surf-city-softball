@@ -1,7 +1,6 @@
-google_provider_version      = "6.13.1"
-google_beta_provider_version = "6.13.1"
-project_id                   = "surf-city-softball-dev"
-network_name                 = "surf-city-softball-network-dev"
-subnet_name                  = "surf-city-softball-subnet-dev"
-subnet_cidr_range            = "10.0.1.0/24"
-region                       = "us-west2"
+auto_create_subnetworks = false
+network_name      = "surf-city-softball-network-dev"
+project_id        = "surf-city-softball-dev"
+region           = "us-west1"
+subnet_cidr_range = "10.0.1.0/24" 
+subnet_name       = "surf-city-softball-subnet-dev" 

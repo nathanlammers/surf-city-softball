@@ -1,6 +1,12 @@
+# Input variables for the project module.
 variable "apis" {
   description = "The list of APIs to enable"
   type        = list(string)
+}
+
+variable "billing_account_id" {
+  description = "The ID of the Google Cloud billing account"
+  type        = string
 }
 
 variable "environment_name" {
@@ -8,18 +14,8 @@ variable "environment_name" {
   type        = string
 }
 
-variable "google_beta_provider_version" {
-  description = "The terraform provider version for Google Cloud Beta"
-  type        = string
-}
-
-variable "google_provider_version" {
-  description = "The terraform provider version for Google Cloud"
-  type        = string
-}
-
-variable "prefix" {
-  description = "The prefix to define the path for the backend file in GCS"
+variable "firebase_enabled" {
+  description = "Whether Firebase is enabled"
   type        = string
 }
 

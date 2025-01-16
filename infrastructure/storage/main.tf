@@ -1,10 +1,10 @@
-resource "google_storage_bucket" "surf_city_softball_terraform_state" {
-  name          = var.environment_name
-  location      = "US"
-  storage_class = "STANDARD"
+resource "google_storage_bucket" "surf_city_softball_storage" {
+  name          = var.bucket_name
+  location      = var.region
+  storage_class = var.storage_class
 
   versioning {
-    enabled = true
+    enabled = var.versioning_enabled
   }
 
   labels = {
