@@ -1,0 +1,2 @@
+bucket = "surf-city-softball-storage-prod"
+prefix = "terraform/identity"

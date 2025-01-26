@@ -1,7 +1,15 @@
-# Input variables for the project module.
+# input variables for the project module
 variable "apis" {
   description = "The list of APIs to enable"
   type        = list(string)
+}
+
+variable "api_quota_preferences" {
+  description = "The name of the quota preference"
+  type = map(object({
+    api             = string
+    preferred_value = number
+  }))
 }
 
 variable "billing_account_id" {
@@ -28,6 +36,7 @@ variable "project_name" {
   description = "The name of the Google Cloud project"
   type        = string
 }
+
 
 variable "region" {
   description = "The region to deploy resources in"

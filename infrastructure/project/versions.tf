@@ -1,5 +1,8 @@
-# Required versions & sources for Terraform itself and the Google Cloud providers.
+# required versions & sources
 terraform {
+
+  # version of terraform itself
+  required_version = "1.10.3"
 
   required_providers {
 
@@ -11,6 +14,4 @@ terraform {
 
   }
 
-  # Version of Terraform itself.
-  required_version = "1.10.3"
 }
