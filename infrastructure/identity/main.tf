@@ -7,7 +7,7 @@ resource "google_service_account" "surf_city_softball_service_accounts" {
 resource "google_service_account_iam_member" "surf_city_softball_bindings" {
 
     for_each = tomap({
-    for sa_role in local.service_account_roles : "${sa_role.sa_key}.${sa_role.role}" => sa_role
+    for sa_role in local.service_account_roles : format("%s%s%s", sa_role.sa_key, ".", sa_role.role) => sa_role
   })
 
     service_account_id = each.value.service_account_id
@@ -21,8 +21,8 @@ locals {
             [
             for role in sa.roles : {
                 
-                member = "serviceAccount:${google_service_account.surf_city_softball_service_accounts[sa_key].email}"
-                service_account_id = "${google_service_account.surf_city_softball_service_accounts[sa_key].name}"
+                member = format("%s%s", "serviceAccount:", google_service_account.surf_city_softball_service_accounts[sa_key].email)
+                service_account_id = google_service_account.surf_city_softball_service_accounts[sa_key].name
                 sa_key = sa_key
                 role = role
             }

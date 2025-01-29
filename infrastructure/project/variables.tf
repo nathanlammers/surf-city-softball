@@ -4,14 +4,6 @@ variable "apis" {
   type        = list(string)
 }
 
-variable "api_quota_preferences" {
-  description = "The name of the quota preference"
-  type = map(object({
-    api             = string
-    preferred_value = number
-  }))
-}
-
 variable "billing_account_id" {
   description = "The ID of the Google Cloud billing account"
   type        = string
@@ -36,7 +28,6 @@ variable "project_name" {
   description = "The name of the Google Cloud project"
   type        = string
 }
-
 
 variable "region" {
   description = "The region to deploy resources in"
