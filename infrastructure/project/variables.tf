@@ -33,8 +33,3 @@ variable "region" {
   description = "The region to deploy resources in"
   type        = string
 }
-
-variable "storage_bucket_name" {
-  description = "The name of the Google Cloud Storage bucket"
-  type        = string
-}
