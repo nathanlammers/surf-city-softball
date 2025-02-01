@@ -21,6 +21,7 @@ api_quota_preferences = {
 billing_account_id  = "0156BD-FE9F44-8E2226"
 environment_name    = "dev"
 firebase_enabled    = "enabled"
+hostname            = "registry.terraform.io"
 project_id          = "surf-city-softball-dev"
 project_name        = "surf-city-softball-dev"
 region              = "us-west2"

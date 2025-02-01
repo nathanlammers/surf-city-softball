@@ -7,12 +7,14 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = "6.16.0"
+      hostname = "registry.terraform.io"
     }
 
     # google cloud provider for all stable features
     google-beta = {
       source  = "hashicorp/google-beta"
       version = "6.16.0"
+      hostname = "registry.terraform.io"
     }
 
   }

@@ -5,6 +5,7 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = "6.14.1"
+      hostname = "registry.terraform.io"
     }
   }
 }
