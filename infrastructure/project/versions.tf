@@ -8,9 +8,8 @@ terraform {
 
     # google cloud provider for all stable features
     google = {
-      source  = "hashicorp/google"
+      source  = "registry.terraform.io/hashicorp/google"
       version = "6.14.1"
-      hostname = "registry.terraform.io"
     }
 
   }
