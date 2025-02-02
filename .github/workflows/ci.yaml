@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  tflint:
+  CI:
     runs-on: macos-15
 
     steps:
