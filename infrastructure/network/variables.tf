@@ -5,12 +5,12 @@ variable "auto_create_subnetworks" {
 
 variable "network_name" {
   description = "The network name"
-  type       = string
+  type        = string
 }
 
 variable "project_id" {
   description = "The project ID"
-  type = string
+  type        = string
 }
 
 variable "region" {

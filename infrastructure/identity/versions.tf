@@ -8,7 +8,7 @@ terraform {
       source  = "registry.terraform.io/hashicorp/google"
       version = "6.16.0"
     }
-    
+
   }
 
   # Version of Terraform itself.
