@@ -1,38 +1,20 @@
-name: CI
-on:
-  push:
-    branches: [ master ]
-  pull_request:
+on: push
 
 jobs:
   CI:
-    runs-on: macos-15
+    runs-on: macos-15 
+    name: CI
 
     steps:
-    - uses: actions/checkout@v4
-      name: Checkout source code
 
-    # install TFLint plugins
-    - uses: actions/cache@v4
-      name: Cache plugin dir
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Terrascan
+      id: terrascan
+      uses: tenable/terrascan-action@main
       with:
-        path: ~/.tflint.d/plugins
-        key: macos-15-tflint-${{ hashFiles('.tflint.hcl') }}
-
-    # setup TFLint
-    - uses: terraform-linters/setup-tflint@v4
-      name: Setup TFLint
-      with:
-        tflint_version: v0.52.0
-
-    # show TFLint version
-    - name: Show version
-      run: tflint --version
-
-    # init TFLint
-    - name: Init TFLint
-      run: tflint --init
-
-    # run TFLint
-    - name: Run TFLint
-      run: tflint -f compact
+        iac_type: 'terraform'
+        iac_version: 'v1'
+        policy_type: 'gcp'
+        iac_dir: './infrastruture'
