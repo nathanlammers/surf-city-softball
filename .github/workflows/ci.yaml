@@ -5,21 +5,26 @@ on: push
 jobs:
   CI:
     name: CI
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     steps:
+
+      # checkout code
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      
+      # setup terraform linter 
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
         with:
-          terraform_version: "1.1.7"
+          tflint_version: v0.52.0
 
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Run Super-Linter
-        uses: github/super-linter@v4
+      # initialize TFLint
+      - name: Init TFLint
+        run: tflint --init
         env:
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+
+      # Run TFLint
+      - name: Run TFLint
+        run: tflint -f compact
+
