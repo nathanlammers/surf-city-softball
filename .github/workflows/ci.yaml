@@ -1,30 +1,38 @@
 name: CI
-
-on: push
+on:
+  push:
+    branches: [ master ]
+  pull_request:
 
 jobs:
-  CI:
-    name: CI
+  tflint:
     runs-on: macos-15
+
     steps:
+    - uses: actions/checkout@v4
+      name: Checkout source code
 
-      # checkout code
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      # setup terraform linter 
-      - uses: terraform-linters/setup-tflint@v4
-        name: Setup TFLint
-        with:
-          tflint_version: v0.52.0
+    # install TFLint plugins
+    - uses: actions/cache@v4
+      name: Cache plugin dir
+      with:
+        path: ~/.tflint.d/plugins
+        key: macos-15-tflint-${{ hashFiles('.tflint.hcl') }}
 
-      # initialize TFLint
-      - name: Init TFLint
-        run: tflint --init
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+    # setup TFLint
+    - uses: terraform-linters/setup-tflint@v4
+      name: Setup TFLint
+      with:
+        tflint_version: v0.52.0
 
-      # Run TFLint
-      - name: Run TFLint
-        run: tflint -f compact
+    # show TFLint version
+    - name: Show version
+      run: tflint --version
 
+    # init TFLint
+    - name: Init TFLint
+      run: tflint --init
+
+    # run TFLint
+    - name: Run TFLint
+      run: tflint -f compact
