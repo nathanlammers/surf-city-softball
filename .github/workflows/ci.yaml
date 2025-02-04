@@ -5,7 +5,8 @@ on:
   pull_request:
 
 jobs:
-  CI:
+  TFLint:
+    name: Lint Terraform
     runs-on: macos-15
 
     # checkout source code
