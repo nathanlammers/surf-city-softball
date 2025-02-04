@@ -1,3 +1,4 @@
+add_terraform_attribution_label = true
 bundle_id = "wedge.surf-city-softball"
 display_name = "surf-city-softball-prod"
 project_id = "surf-city-softball-prod"

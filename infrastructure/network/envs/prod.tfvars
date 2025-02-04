@@ -1,3 +1,4 @@
+add_terraform_attribution_label = true
 auto_create_subnetworks = false
 network_name      = "surf-city-softball-network-prod"
 project_id        = "surf-city-softball-prod"

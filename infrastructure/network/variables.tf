@@ -1,3 +1,9 @@
+variable "add_terraform_attribution_label" {
+  description = "Whether to add the Terraform attribution label"
+  type        = bool
+  
+}
+
 variable "auto_create_subnetworks" {
   description = "Whether to create subnetworks automatically"
   type        = bool

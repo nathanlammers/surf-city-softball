@@ -1,0 +1,42 @@
+name: CD (Dev)
+
+on:
+  push:
+    branches:
+      - master 
+
+jobs:
+  CD:
+    name: Terraform Deployment
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.3
+
+      - name: Find and Deploy All Terraform Modules
+        run: |
+          set -e
+          INFRA_DIR="infrastructure"
+          
+          for dir in $(find "$INFRA_DIR" -type f -name "*.tf" -exec dirname {} \; | sort -u); do
+              echo "🚀 Processing Terraform in $dir"
+              cd "$dir"
+
+              echo "🔹 Initializing Terraform..."
+              terraform init -backend-config="envs/dev.backend"
+
+              echo "🔹 Validating Terraform configuration..."
+              terraform validate -var-file="envs/dev.tfvars"
+
+              echo "🔹 Planning Terraform changes..."
+              terraform plan -out=tfplan -var-file="envs/dev.tfvars"
+
+              echo "🔹 Applying Terraform changes..."
+              terraform apply -var-file="envs/dev.tfvars" -auto-approve tfplan
+          done

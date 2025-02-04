@@ -1,4 +1,4 @@
-# 
+add_terraform_attribution_label = true
 apis = [
   "billingbudgets.googleapis.com",
   "cloudbilling.googleapis.com",

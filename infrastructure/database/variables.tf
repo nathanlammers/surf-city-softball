@@ -1,3 +1,8 @@
+variable "add_terraform_attribution_label" {
+  description = "Whether to add the Terraform attribution label to the Google Cloud resources."
+  type        = bool
+}
+
 variable "database_name" {
   description = "The name of the database for Firestore."
   type        = string

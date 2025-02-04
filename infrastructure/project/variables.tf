@@ -1,4 +1,8 @@
-# input variables for the project module
+variable "add_terraform_attribution_label" {
+  description = "Whether to add the Terraform attribution label"
+  type        = string
+}
+
 variable "apis" {
   description = "The list of APIs to enable"
   type        = list(string)

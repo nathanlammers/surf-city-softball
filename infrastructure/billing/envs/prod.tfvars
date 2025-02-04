@@ -1,6 +1,8 @@
-billing_account_id   = "0156BD-FE9F44-8E2226"
-budget_currency_code = "USD"
-budget_amount        = "2.50"
-budget_display_name  = "surf-city-softball-budget-prod"
-project_id           = "surf-city-softball-prod"
-region               = "us-west2"
+add_terraform_attribution_label = true
+billing_account_id              = "0156BD-FE9F44-8E2226"
+budget_currency_code            = "USD"
+budget_amount                   = "2"
+budget_display_name             = "surf-city-softball-budget-prod"
+project_id                      = "surf-city-softball-prod"
+region                          = "us-west2"
+user_project_override           = true

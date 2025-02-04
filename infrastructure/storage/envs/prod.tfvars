@@ -1,3 +1,4 @@
+add_terraform_attribution_label = true
 bucket_name        = "surf-city-softball-storage-prod"
 environment_name   = "prod"
 project_id         = "surf-city-softball-prod"
