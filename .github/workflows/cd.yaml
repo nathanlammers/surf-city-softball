@@ -19,19 +19,19 @@ jobs:
     name: CD (Dev)
     runs-on: macos-15
 
-    # checkout source code
     steps:
-
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          create_credentials_file: true
-          workload_identity_provider: 'projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/providers/surf-city-softball-id-prov-dev'
-          service_account: 'terraform-sa-dev@surf-city-softball-dev.iam.gserviceaccount.com'
-
+      # checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v1"
+        with:
+          create_credentials_file: true
+          workload_identity_provider: "projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/providers/surf-city-softball-id-prov-dev"
+          service_account: "terraform-sa-dev@surf-city-softball-dev.iam.gserviceaccount.com"
+
       # install terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
