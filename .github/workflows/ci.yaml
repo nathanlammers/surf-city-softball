@@ -1,0 +1,37 @@
+# CI workflow that runs when a pull request is opened into the master branch
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  CI:
+    runs-on: macos-15 
+    name: CI
+
+    # checkout source code
+    steps:
+    - uses: actions/checkout@v4
+      name: Checkout source code
+    # install TFLint plugins
+    - uses: actions/cache@v4
+      name: Cache plugin dir
+      with:
+        path: ~/.tflint.d/plugins
+        key: macos-15-tflint-${{ hashFiles('.tflint.hcl') }}
+    # setup TFLint
+    - uses: terraform-linters/setup-tflint@v4
+      name: Setup TFLint
+      with:
+        tflint_version: v0.52.0
+    # show TFLint version
+    - name: Show version
+      run: tflint --version
+    # init TFLint
+    - name: Init TFLint
+      run: tflint --init
+    # run TFLint
+    - name: Run TFLint
+      run: tflint -f compact
