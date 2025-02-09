@@ -47,14 +47,18 @@ resource "google_iam_workload_identity_pool_provider" "example" {
   display_name                       = var.workload_identity_pool_provider_name
   description                        = var.workload_identity_pool_provider_description
   disabled                           = var.workload_identity_pool_disabled
-  attribute_condition = <<EOT
-    attribute.repository == "wedge-llc/surf-city-softball"
+  attribute_condition                = <<EOT
+    attribute.repository == "wedge-llc/surf-city-softball" &&
+    attribute.repository_id == "910965414" &&
+    assertion.ref == "refs/heads/master"
 EOT
   attribute_mapping = {
-    "google.subject"       = "assertion.sub"
-    "attribute.actor"      = "assertion.actor"
-    "attribute.aud"        = "assertion.aud"
-    "attribute.repository" = "assertion.repository"
+    "google.subject"          = "assertion.sub"
+    "attribute.actor"         = "assertion.actor"
+    "attribute.aud"           = "assertion.aud"
+    "attribute.repository"    = "assertion.repository"
+    "attribute.repository_id" = "assertion.repository_id"
+    "attribute.ref"           = "assertion.ref"
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
