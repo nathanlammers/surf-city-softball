@@ -1,6 +1,10 @@
 # CI workflow that runs when a pull request is merged into the master branch
 name: CD (Dev)
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   push:
     branches:
@@ -8,11 +12,24 @@ on:
 
 jobs:
   CD:
+    permissions:
+      id-token: write
+      contents: read
+
     name: CD (Dev)
     runs-on: macos-15
-    
+
     # checkout source code
     steps:
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          create_credentials_file: true
+          workload_identity_provider: 'projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/providers/surf-city-softball-id-prov-dev'
+          service_account: 'terraform-sa-dev@surf-city-softball-dev.iam.gserviceaccount.com'
+
       - name: Checkout repository
         uses: actions/checkout@v4
       # install terraform
@@ -20,7 +37,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.10.3
-      # deploy terraform 
+      # deploy terraform
       - name: Show Terraform version
         run: |
           set -e
