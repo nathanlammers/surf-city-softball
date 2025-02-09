@@ -7,7 +7,8 @@ service_accounts = {
     display_name = "terraform-sa-dev"
     roles = [
       "roles/editor",
-      "roles/iam.serviceAccountUser"
+      "roles/iam.serviceAccountUser",
+      "roles/iam.serviceAccountTokenCreator"
     ]
   }
 }
