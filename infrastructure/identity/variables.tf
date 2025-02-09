@@ -26,6 +26,11 @@ variable "workload_identity_pool_description" {
   type        = string
 }
 
+variable "workload_identity_pool_disabled" {
+  description = "Whether the workload identity pool is disabled."
+  type        = bool
+}
+
 variable "workload_identity_pool_display_name" {
   description = "The display name of the workload identity pool."
   type        = string
@@ -37,7 +42,22 @@ variable "workload_identity_pool_id" {
   type        = string
 }
 
-variable "workload_identity_pool_disabled" {
-  description = "Whether the workload identity pool is disabled."
+variable "workload_identity_pool_provider_id" {
+  description = "The ID of the workload identity pool provider."
+  type        = string
+}
+
+variable "workload_identity_pool_provider_name" {
+  description = "The name of the workload identity pool provider."
+  type        = string
+}
+
+variable "workload_identity_pool_provider_disabled" {
+  description = "Whether the workload identity pool provider is disabled."
   type        = bool
+}
+
+variable "workload_identity_pool_provider_description" {
+  description = "The description of the workload identity pool provider."
+  type        = string
 }

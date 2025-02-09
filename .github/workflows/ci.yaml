@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  TFLint:
+  CI:
     name: Lint Terraform
     runs-on: macos-15
 
