@@ -62,5 +62,6 @@ EOT
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
+    jwks_json = "{\n      \"universe_domain\" : \"googleapis.com\",\n      \"type\" : \"external_account\",\n      \"audience\" : \"//iam.googleapis.com/projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/providers/surf-city-softball-id-prov-dev\",\n      \"subject_token_type\" : \"urn:ietf:params:oauth:token-type:jwt\",\n      \"token_url\" : \"https://sts.googleapis.com/v1/token\",\n      \"credential_source\" : {\n        \"file\" : \"identity_token\",\n        \"format\" : {\n          \"type\" : \"json\",\n          \"subject_token_field_name\" : \"access_token\"\n        }\n      }\n    }"
   }
 }
