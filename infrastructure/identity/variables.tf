@@ -18,6 +18,7 @@ variable "service_accounts" {
   type = map(object({
     display_name = string
     roles        = list(string)
+    members      = list(string)
   }))
 }
 

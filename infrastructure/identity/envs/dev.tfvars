@@ -7,9 +7,11 @@ service_accounts = {
     display_name = "terraform-sa-dev"
     roles = [
       "roles/editor",
-      "roles/iam.serviceAccountUser",
       "roles/iam.serviceAccountTokenCreator"
     ]
+    members = [
+      "principalSet://iam.googleapis.com/projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/*"
+      ]
   }
 }
 

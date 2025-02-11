@@ -10,13 +10,18 @@ locals {
   service_account_roles = flatten([
     for sa_key, sa in var.service_accounts :
     [
-      for role in sa.roles : {
+      for role in sa.roles :
 
-        member             = format("%s%s", "serviceAccount:", google_service_account.surf_city_softball_service_accounts[sa_key].email)
-        service_account_id = google_service_account.surf_city_softball_service_accounts[sa_key].name
-        sa_key             = sa_key
-        role               = role
-      }
+      [for member in sa.members :
+
+        {
+
+          member             = member
+          service_account_id = google_service_account.surf_city_softball_service_accounts[sa_key].name
+          sa_key             = sa_key
+          role               = role
+        }
+      ]
     ]
   ])
 }
@@ -63,5 +68,9 @@ EOT
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
   }
+}
+
+output "service_account_roles" {
+  value = local.service_account_roles
 }
 
