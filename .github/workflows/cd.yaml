@@ -38,7 +38,7 @@ jobs:
         with:
           terraform_version: 1.10.3
       # deploy terraform
-      - name: Show Terraform version
+      - name: Deploy Terraform
         run: |
           set -e
           INFRA_DIR="infrastructure"

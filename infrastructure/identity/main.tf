@@ -69,8 +69,3 @@ EOT
     issuer_uri = "https://token.actions.githubusercontent.com"
   }
 }
-
-output "service_account_roles" {
-  value = local.service_account_roles
-}
-
