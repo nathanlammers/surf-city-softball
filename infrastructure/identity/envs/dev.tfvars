@@ -6,21 +6,31 @@ service_accounts = {
   "terraform-sa-dev" = {
     display_name = "terraform-sa-dev"
     roles = [
-      "roles/editor",
-      "roles/iam.serviceAccountTokenCreator",
-      "roles/iam.workloadIdentityUser"
+      "roles/editor"
     ]
-    members = [
-      "principalSet://iam.googleapis.com/projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/*"
-      ]
   }
 }
 
-workload_identity_pool_description          = "The workload identity pool for the Surf City Softball project."
-workload_identity_pool_disabled             = false
-workload_identity_pool_display_name         = "surf-city-softball-id-pool-dev"
-workload_identity_pool_id                   = "surf-city-softball-id-pool-dev"
-workload_identity_pool_provider_description = "GitHub Actions identity pool provider for automated test"
-workload_identity_pool_provider_disabled    = false
-workload_identity_pool_provider_id          = "surf-city-softball-id-prov-dev"
-workload_identity_pool_provider_name        = "surf-city-softball-id-prov-dev"
+wif_pool_description          = "The workload identity pool for the Surf City Softball project."
+wif_pool_disabled             = false
+wif_pool_display_name         = "surf-city-softball-id-pool-dev"
+wif_pool_id                   = "surf-city-softball-id-pool-dev"
+wif_pool_provider_description = "GitHub Actions identity pool provider for automated test"
+wif_pool_provider_disabled    = false
+wif_pool_provider_id          = "surf-city-softball-id-prov-dev"
+wif_pool_provider_name        = "surf-city-softball-id-prov-dev"
+wif_pool_provider_attribute_condition       = <<EOT
+    attribute.repository == "wedge-llc/surf-city-softball" &&
+    attribute.repository_id == "910965414" &&
+    assertion.ref == "refs/heads/master"
+EOT
+
+wif_pool_provider_attribute_mapping = {
+  "google.subject"          = "assertion.sub"
+  "attribute.actor"         = "assertion.actor"
+  "attribute.aud"           = "assertion.aud"
+  "attribute.repository"    = "assertion.repository"
+  "attribute.repository_id" = "assertion.repository_id"
+  "attribute.ref"           = "assertion.ref"
+}
+wif_pool_provider_issuer_uri = "https://token.actions.githubusercontent.com"

@@ -18,47 +18,61 @@ variable "service_accounts" {
   type = map(object({
     display_name = string
     roles        = list(string)
-    members      = list(string)
   }))
 }
 
-variable "workload_identity_pool_description" {
+variable "wif_pool_provider_attribute_condition" {
+  description = "The attribute condition for the workload identity pool provider."
+  type        = string
+}
+
+variable "wif_pool_provider_issuer_uri" {
+  description = "The issuer URI for the workload identity pool provider."
+  type        = string
+}
+
+variable "wif_pool_provider_attribute_mapping" {
+  description = "The attribute mapping for the workload identity pool provider."
+  type        = map(string)
+}
+
+variable "wif_pool_description" {
   description = "The description of the workload identity pool."
   type        = string
 }
 
-variable "workload_identity_pool_disabled" {
+variable "wif_pool_disabled" {
   description = "Whether the workload identity pool is disabled."
   type        = bool
 }
 
-variable "workload_identity_pool_display_name" {
+variable "wif_pool_display_name" {
   description = "The display name of the workload identity pool."
   type        = string
 
 }
 
-variable "workload_identity_pool_id" {
+variable "wif_pool_id" {
   description = "The ID of the workload identity pool."
   type        = string
 }
 
-variable "workload_identity_pool_provider_id" {
+variable "wif_pool_provider_id" {
   description = "The ID of the workload identity pool provider."
   type        = string
 }
 
-variable "workload_identity_pool_provider_name" {
+variable "wif_pool_provider_name" {
   description = "The name of the workload identity pool provider."
   type        = string
 }
 
-variable "workload_identity_pool_provider_disabled" {
+variable "wif_pool_provider_disabled" {
   description = "Whether the workload identity pool provider is disabled."
   type        = bool
 }
 
-variable "workload_identity_pool_provider_description" {
+variable "wif_pool_provider_description" {
   description = "The description of the workload identity pool provider."
   type        = string
 }
