@@ -29,7 +29,7 @@ jobs:
         uses: "google-github-actions/auth@v1"
         with:
           create_credentials_file: true
-          workload_identity_provider: "projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-id-pool-dev/providers/surf-city-softball-id-prov-dev"
+          workload_identity_provider: "projects/286242985148/locations/global/workloadIdentityPools/surf-city-softball-wif-pool-dev/providers/surf-city-softball-wif-prov-dev"
           service_account: "terraform-sa-dev@surf-city-softball-dev.iam.gserviceaccount.com"
 
       # install terraform
