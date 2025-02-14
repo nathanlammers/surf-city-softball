@@ -13,12 +13,19 @@ variable "region" {
   type        = string
 }
 
-variable "service_accounts" {
+variable "terraform_sa" {
   description = "The region for the Google Cloud project."
-  type = map(object({
+  type = object({
+    id           = string
     display_name = string
     roles        = list(string)
-  }))
+  })
+}
+
+variable "terraform_sa_wif_role" {
+  description = "The role for the workload identity pool provider."
+  type        = string
+
 }
 
 variable "wif_pool_provider_attribute_condition" {
