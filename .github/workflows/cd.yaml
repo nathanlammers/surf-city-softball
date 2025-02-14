@@ -48,7 +48,7 @@ jobs:
               echo "🔹 Initializing Terraform..."
               terraform init -backend-config="envs/dev.backend"
               echo "🔹 Validating Terraform configuration..."
-              terraform validate -var-file="envs/dev.tfvars"
+              terraform validate
               echo "🔹 Planning Terraform changes..."
               terraform plan -out=tfplan -var-file="envs/dev.tfvars"
               echo "🔹 Applying Terraform changes..."
