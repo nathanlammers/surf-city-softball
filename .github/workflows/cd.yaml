@@ -54,5 +54,5 @@ jobs:
               echo "🔹 Applying Terraform changes..."
               terraform apply -var-file="envs/dev.tfvars" -auto-approve tfplan
               echo "⏎ Returning to the infrastructure folder"
-              cd ..
+              cd ../..
           done
