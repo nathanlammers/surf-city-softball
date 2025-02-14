@@ -6,14 +6,18 @@ terraform_sa = {
   id           = "terraform-sa-dev"
   display_name = "terraform-sa-dev"
   roles = [
-    "roles/iam.serviceAccountTokenCreator",
     "roles/iam.serviceAccountOpenIdTokenCreator",
     "roles/iam.workloadIdentityUser",
-    "roles/writer", 
+    "roles/writer"
   ]
 }
 
-terraform_sa_wif_role                 = "roles/iam.workloadIdentityUser"
+terraform_sa_wif_roles = [
+  "roles/iam.serviceAccountOpenIdTokenCreator",
+  "roles/iam.workloadIdentityUser",
+  "roles/writer"
+]
+
 wif_pool_description                  = "The workload identity pool for the Surf City Softball project."
 wif_pool_disabled                     = false
 wif_pool_display_name                 = "surf-city-softball-wif-pool-dev"

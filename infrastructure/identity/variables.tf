@@ -22,9 +22,9 @@ variable "terraform_sa" {
   })
 }
 
-variable "terraform_sa_wif_role" {
+variable "terraform_sa_wif_roles" {
   description = "The role for the workload identity pool provider."
-  type        = string
+  type        = list(string)
 
 }
 

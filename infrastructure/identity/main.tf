@@ -36,7 +36,8 @@ resource "google_iam_workload_identity_pool_provider" "surf_city_softball_wif_po
 
 # attach the workload identity pool provider to the service account
 resource "google_service_account_iam_member" "surf_city_softball_terraform_sa_members" {
-  service_account_id = google_service_account.surf_city_softball_sa_terraform.id
+  service_account_id = google_service_account.surf_city_softball_sa_terraform.name
+  for_each           = toset(var.terraform_sa_wif_roles)
   member             = format("%s%s%s", "principalSet://iam.googleapis.com/", google_iam_workload_identity_pool.surf_city_softball_wif_id_pool.name, "/*")
-  role               = var.terraform_sa_wif_role
+  role               = each.key
 }
