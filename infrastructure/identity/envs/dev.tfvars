@@ -5,7 +5,10 @@ region                          = "us-west2"
 terraform_sa = {
   id           = "terraform-sa-dev"
   display_name = "terraform-sa-dev"
-  roles = ["roles/writer"]
+  roles = [
+    "roles/writer",
+    "roles/serviceusage.serviceUsageConsumer"
+  ]
 }
 
 terraform_sa_wif_role = "roles/iam.workloadIdentityUser"
