@@ -6,8 +6,9 @@ terraform_sa = {
   id           = "terraform-sa-dev"
   display_name = "terraform-sa-dev"
   roles = [
+    "roles/iam.serviceAccountTokenCreator",
     "roles/iam.workloadIdentityUser", 
-    "roles/writer"
+    "roles/writer", 
   ]
 }
 
