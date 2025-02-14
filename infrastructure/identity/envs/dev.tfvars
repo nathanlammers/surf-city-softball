@@ -12,7 +12,7 @@ terraform_sa = {
   ]
 }
 
-terraform_sa_wif_role                 = "roles/editor"
+terraform_sa_wif_role                 = "roles/iam.workloadIdentityUser"
 wif_pool_description                  = "The workload identity pool for the Surf City Softball project."
 wif_pool_disabled                     = false
 wif_pool_display_name                 = "surf-city-softball-wif-pool-dev"
