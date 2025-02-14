@@ -5,18 +5,10 @@ region                          = "us-west2"
 terraform_sa = {
   id           = "terraform-sa-dev"
   display_name = "terraform-sa-dev"
-  roles = [
-    "roles/iam.serviceAccountOpenIdTokenCreator",
-    "roles/iam.workloadIdentityUser",
-    "roles/writer"
-  ]
+  roles = ["roles/writer"]
 }
 
-terraform_sa_wif_roles = [
-  "roles/iam.serviceAccountOpenIdTokenCreator",
-  "roles/iam.workloadIdentityUser",
-  "roles/writer"
-]
+terraform_sa_wif_role = "roles/iam.workloadIdentityUser"
 
 wif_pool_description                  = "The workload identity pool for the Surf City Softball project."
 wif_pool_disabled                     = false
