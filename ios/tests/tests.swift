@@ -1,10 +1,3 @@
-//
-//  iosTests.swift
-//  iosTests
-//
-//  Created by Nathan Lammers on 2/15/25.
-//
-
 import Testing
 @testable import ios
 

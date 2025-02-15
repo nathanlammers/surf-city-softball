@@ -1,10 +1,3 @@
-//
-//  iosUITests.swift
-//  iosUITests
-//
-//  Created by Nathan Lammers on 2/15/25.
-//
-
 import XCTest
 
 final class iosUITests: XCTestCase {
