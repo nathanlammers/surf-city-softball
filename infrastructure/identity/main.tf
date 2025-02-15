@@ -4,12 +4,19 @@ resource "google_service_account" "surf_city_softball_sa_terraform" {
   display_name = var.terraform_sa.display_name
 }
 
-# create the IAM bindings for each service account
+# give the terraform service account the necessary roles
 resource "google_project_iam_member" "surf_city_softball_terraform_sa_roles" {
   project  = var.project_id
   for_each = toset(var.terraform_sa.roles)
   member   = format("%s%s", "serviceAccount:", google_service_account.surf_city_softball_sa_terraform.email)
   role     = each.value
+}
+
+# give the terraform service account the billing role
+resource "google_billing_account_iam_member" "surf_city_softball_terraform_sa_billing_role" {
+  billing_account_id = var.billing_account_id
+  member   = format("%s%s", "serviceAccount:", google_service_account.surf_city_softball_sa_terraform.email)
+  role     = var.terraform_sa_billing_role
 }
 
 # workload identity pool for keyless service account impersonation

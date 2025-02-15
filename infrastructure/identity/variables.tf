@@ -3,6 +3,12 @@ variable "add_terraform_attribution_label" {
   type        = bool
 }
 
+variable "billing_account_id" {
+  description = "The billing account ID for the Google Cloud project."
+  type        = string
+  
+}
+
 variable "project_id" {
   description = "The project ID for the Google Cloud project."
   type        = string
@@ -20,6 +26,11 @@ variable "terraform_sa" {
     display_name = string
     roles        = list(string)
   })
+}
+
+variable "terraform_sa_billing_role" {
+  description = "The billing role for the Terraform service account."
+  type        = string
 }
 
 variable "terraform_sa_wif_role" {

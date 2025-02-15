@@ -1,4 +1,5 @@
 add_terraform_attribution_label = true
+billing_account_id              = "0156BD-FE9F44-8E2226"
 project_id                      = "surf-city-softball-dev"
 region                          = "us-west2"
 
@@ -6,12 +7,12 @@ terraform_sa = {
   id           = "terraform-sa-dev"
   display_name = "terraform-sa-dev"
   roles = [
-    "roles/writer",
-    "roles/serviceusage.serviceUsageConsumer"
+    "roles/editor"
   ]
 }
 
-terraform_sa_wif_role = "roles/iam.workloadIdentityUser"
+terraform_sa_billing_role = "roles/billing.admin"
+terraform_sa_wif_role     = "roles/iam.workloadIdentityUser"
 
 wif_pool_description                  = "The workload identity pool for the Surf City Softball project."
 wif_pool_disabled                     = false
