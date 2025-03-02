@@ -23,7 +23,7 @@ wif_pool_provider_disabled            = false
 wif_pool_provider_id                  = "surf-city-softball-wif-prov-prod"
 wif_pool_provider_name                = "surf-city-softball-wif-prov-prod"
 wif_pool_provider_attribute_condition = <<EOT
-    attribute.repository == "surf-city-softball" &&
+    attribute.repository == "nathanlammers/surf-city-softball" &&
     attribute.repository_id == "910965414" &&
     assertion.ref == "refs/heads/master"
 EOT
