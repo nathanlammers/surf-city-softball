@@ -1,23 +1,39 @@
 add_terraform_attribution_label = true
+billing_account_id              = "0156BD-FE9F44-8E2226"
 project_id                      = "surf-city-softball-prod"
 region                          = "us-west2"
 
-service_accounts = {
-  "terraform-sa-prod" = {
-    display_name = "terraform-prod"
-    roles = [
-      "roles/iam.workloadIdentityPoolAdmin",
-      "roles/editor",
-      "roles/iam.serviceAccountUser"
-    ]
-  }
+terraform_sa = {
+  id           = "terraform-sa-prod"
+  display_name = "terraform-sa-prod"
+  roles = [
+    "roles/editor"
+  ]
 }
 
-workload_identity_pool_description          = "The workload identity pool for the Surf City Softball project."
-workload_identity_pool_disabled             = false
-workload_identity_pool_display_name         = "surf-city-softball-id-pool-prod"
-workload_identity_pool_id                   = "surf-city-softball-id-pool-prod"
-workload_identity_pool_provider_description = "GitHub Actions identity pool provider for automated test"
-workload_identity_pool_provider_disabled    = false
-workload_identity_pool_provider_id          = "surf-city-softball-id-prov-prod"
-workload_identity_pool_provider_name        = "surf-city-softball-id-prov-prod"
+terraform_sa_billing_role = "roles/billing.admin"
+terraform_sa_wif_role     = "roles/iam.workloadIdentityUser"
+
+wif_pool_description                  = "The workload identity pool for the Surf City Softball project."
+wif_pool_disabled                     = false
+wif_pool_display_name                 = "surf-city-softball-wif-pool-prod"
+wif_pool_id                           = "surf-city-softball-wif-pool-prod"
+wif_pool_provider_description         = "GitHub Actions identity pool provider for automated test"
+wif_pool_provider_disabled            = false
+wif_pool_provider_id                  = "surf-city-softball-wif-prov-prod"
+wif_pool_provider_name                = "surf-city-softball-wif-prov-prod"
+wif_pool_provider_attribute_condition = <<EOT
+    attribute.repository == "nathanlammers/surf-city-softball" &&
+    attribute.repository_id == "910965414" &&
+    assertion.ref == "refs/heads/master"
+EOT
+
+wif_pool_provider_attribute_mapping = {
+  "google.subject"          = "assertion.sub"
+  "attribute.actor"         = "assertion.actor"
+  "attribute.aud"           = "assertion.aud"
+  "attribute.repository"    = "assertion.repository"
+  "attribute.repository_id" = "assertion.repository_id"
+  "attribute.ref"           = "assertion.ref"
+}
+wif_pool_provider_issuer_uri = "https://token.actions.githubusercontent.com"
